@@ -1,0 +1,67 @@
+public class Weapon {
+    
+    public static enum Weapontype {
+        SWORD, GUN, BOW, STAFF, SHIELD, WAND;
+    }
+    
+    private final int weight;
+    private final int size;
+    private final int value;
+    private final Weapon.Weapontype type;
+    private final int attack;
+    private final int defence;
+    private final int magic;
+    private final int capacity;
+    
+    public static class Builder{
+        //Required parameters
+        private final int weight;
+        private final int size;
+        private final int value;
+        private final Weapon.Weapontype type;
+        
+        //Optional parameters - initialized to default values
+        private int attack = 0;
+        private int defence = 0;
+        private int magic = 0;
+        private int capacity = 0;
+        
+        public Builder(int weight, int size, int value, Weapon.Weapontype type) {
+            this.weight = weight;
+            this.size = size;
+            this.value = value;
+            this.type = type;
+        }
+        
+        public Builder attack(int val){attack = val;      return this;}
+        public Builder defence(int val){defence = val;     return this;}
+        public Builder magic(int val){magic = val;       return this;}
+        public Builder capacity(int val){capacity = val;    return this;}
+        
+        public Weapon build() {
+            return new Weapon(this);
+        }
+        
+    }
+    
+    private Weapon(Builder builder) {
+        weight = builder.weight;
+        size = builder.size;
+        value = builder.value;
+        type = builder.type;
+        attack = builder.attack;
+        defence = builder.defence;
+        magic = builder.magic;
+        capacity = builder.capacity;
+    }
+    
+    public int getWeight() {return weight;}
+    public int getSize() {return size;}
+    public int getValue() {return value;}
+    public Weapon.Weapontype getType() {return type;}
+    public int getAttack() {return attack;}
+    public int getDefence() {return defence;}
+    public int getMagic() {return magic;}
+    public int getCapacity() {return capacity;}  
+    
+}
