@@ -1,9 +1,18 @@
+/*
+Example of calling this method:
+Weapon master = new Weapon.Builder(20, 3, 4000, SWORD).attack(200).magic(20).defence(20).build();
+
+Coupled with an import statement:
+import static <package>.Weapon.Weapontype.*;
+*/
+
 public class Weapon {
     
     public static enum Weapontype {
         SWORD, GUN, BOW, STAFF, SHIELD, WAND;
     }
     
+    // Declare all variables for the class
     private final int weight;
     private final int size;
     private final int value;
@@ -14,18 +23,19 @@ public class Weapon {
     private final int capacity;
     
     public static class Builder{
-        //Required parameters
+        // Required parameters
         private final int weight;
         private final int size;
         private final int value;
         private final Weapon.Weapontype type;
         
-        //Optional parameters - initialized to default values
+        // Optional parameters - initialized to default values
         private int attack = 0;
         private int defence = 0;
         private int magic = 0;
         private int capacity = 0;
         
+        // Builders initial constructor with the required parameters
         public Builder(int weight, int size, int value, Weapon.Weapontype type) {
             this.weight = weight;
             this.size = size;
@@ -33,16 +43,19 @@ public class Weapon {
             this.type = type;
         }
         
+        // Methods for adding optional parameters with the name of the parameter matching the method, for readability
         public Builder attack(int val){attack = val;      return this;}
         public Builder defence(int val){defence = val;     return this;}
         public Builder magic(int val){magic = val;       return this;}
         public Builder capacity(int val){capacity = val;    return this;}
         
+        //Build method for creating the object after calling the optional methods needed
         public Weapon build() {
             return new Weapon(this);
         }
         
     }
+    
     
     private Weapon(Builder builder) {
         weight = builder.weight;
@@ -55,6 +68,7 @@ public class Weapon {
         capacity = builder.capacity;
     }
     
+    // Getter methods for the object
     public int getWeight() {return weight;}
     public int getSize() {return size;}
     public int getValue() {return value;}
