@@ -1,0 +1,52 @@
+/*
+Using a singleton style to create only a single instance of a class
+To be implemented if only a single object of that class can exist
+Also implements serializable and the readResolve method to ensure singleton
+even when an object is deserialized that is the same.
+*/
+
+
+public class King implements serializable {
+    
+    public static final King INSTANCE = new King();
+    
+    private King() {
+        
+    }
+    
+    public void preside() {
+        System.out.println("The King is presiding over his court");
+    }
+    
+    private Object readResolve() {
+        return INSTANCE;
+    }
+    
+}
+
+
+/*
+Also a version with a static factory instead of using King.INSTANCE;
+*/
+
+public class King implements serializable {
+    
+    private static final King INSTANCE = new King();
+    
+    private King() {
+        
+    }
+    
+    public static King getInstance() {
+        return INSTANCE;
+    }
+    
+    public void preside() {
+        System.out.println("The King is presiding over his court");
+    }
+    
+    private Object readResolve() {
+        return INSTANCE;
+    }
+    
+}
